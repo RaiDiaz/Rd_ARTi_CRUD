@@ -1,0 +1,64 @@
+﻿@model List<postsModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<div class="card">
+  <div class="card-header">
+    List posts
+  </div>
+  <div class="card-body">
+    <a asp-action="Guardar" asp-controller="Mantenedor" class="btn btn-success"><i class="bi bi-plus-circle"></i> Crear Nuevo</a>
+    <hr />
+    <table id="tblPosts" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th>Status</th>
+                <th>Author</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+               
+        </tbody>
+    </table>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+    });
+
+    function GetAllStudents(){
+        $.getJSON("/posts/GetAllPosts", function(posts)){
+            $("#tblPosts tbody tr").remove();
+            $.map(posts, function(post){
+                $("#tblPosts tBody").append(
+                    "<tr>"
+                    +"<td>"post.Title"</td>"
+                    +"<td>"post.Description"</td>"
+                    +"<td>"post.Content"</td>"
+                    +"<td>"post.Status"</td>"
+                    +"<td>"post.Author"</td>"
+                    +"<td>"
+                )
+                    
+            })
+        }
+    }
+
+</script>
+
